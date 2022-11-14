@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title }}</title>
+    <title>Algorithms</title>
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,29 @@
             <label>Are the edges bidirectional?</label>
             <input value="Send" type="submit">
           </form>
+
+          <form method="POST" action="/algorithm" class="row col-12 g-2" id="algo-form">
+
+            <div class="form-group col-md-12 p-2">
+                <label for="algorithms" class="text">Select algorithm</label><br>
+                {{ form.algorithms(class="form-select", id="algorithms") }}
+            </div>
+            <div class="form-group col-md-12 p-2">
+                <label for="vertices" class="text">Enter vertices</label><br>
+                {{ form.vertices(class="form-control", id="vertices") }}
+            </div>            
+            <div class="form-group col-md-12 p-2">
+                <label for="edges" class="text">Edges with weights</label><br>
+                {{ form.edges(type="text", class="form-control", id="edges") }}
+            </div>
+            <div class="form-group col-md-12 p-2">
+                <label for="bidirect" class="text">Id bidirectional?</label><br>
+                {{ form.bidirectional(type="text", class="form-control", id="bidirect") }}
+            </div>
+            <div class="d-grid gap-2">
+                <input type="submit" class="btn btn-dark" value="Send">
+            </div>
+        </form>
     </div>
 
     <!-- JS -->
