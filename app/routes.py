@@ -12,9 +12,18 @@ def home():
 
 @app.route('/algorithm', methods=['POST'])
 def algorithm():    
-    algorithm = request.get("algorithm", default="")
-    nodes = request.get("nodes", default=[])
-    edges = request.get("nodes", default=[])
-    bidirectional = request.get("bidirectional", default=False, type=None)
+    algorithm = request.args.get("algorithm", default="")
+    nodes = request.args.get("nodes", default=[])
+    edges = request.args.get("nodes", default=[])
+    bidirectional = request.args.get("bidirectional", default=False, type=None)
 
-    response = requests.get(GRAPH_SERVICE_URL + "/algorithm")
+    response = requests.post(GRAPH_SERVICE_URL + "/algorithm?", data={
+        "algorithm": algorithm,
+        "nodes": nodes,
+        "edges": edges,
+        "bidirectional": bidirectional
+    })
+
+    # Some magic I will do Here :P
+
+    print(response.json)

@@ -6,4 +6,4 @@ SECRET_KEY = 'secret-key-1234-#$%^'
 # setting prject's base directory
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-GRAPH_SERVICE_URL = '127.0.0.1'
+GRAPH_SERVICE_URL = 'http://127.0.0.1'
