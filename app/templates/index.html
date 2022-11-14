@@ -20,23 +20,6 @@
 
 
     <div class='container'>
-        <form action="/algorithm">
-            <label for="cars">Choose an algorithm: </label>
-            <select id="algorithm" name="algorithm">
-              <option value="bfs">BFS</option>
-              <option value="dfs">DFS</option>
-              <option value="dijkstra">Dijkstra</option>
-              <option value="flow">Flow</option>
-              <option value="topsort">Topsort</option>
-            </select>
-
-            <input type="text" placeholder="Enter vertices">
-            <input type="text" placeholder="Enter edges and weights (optional)">
-            <input type="checkbox" name="bidirectional" id="bidirect" value="true">
-            <label>Are the edges bidirectional?</label>
-            <input value="Send" type="submit">
-          </form>
-
           <form method="POST" action="/algorithm" class="row col-12 g-2" id="algo-form">
 
             <div class="form-group col-md-12 p-2">
