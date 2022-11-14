@@ -5,9 +5,10 @@ from config import GRAPH_SERVICE_URL
 import requests
 
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def home():    
-    return render_template("index.html") 
+    form = InputForm(['xd', 'xxd', 'xddd', 'xdxdxdx'])
+    return render_template("index.html", form=form) 
 
 @app.route('/algorithm', methods=['POST'])
 def algorithm():    
