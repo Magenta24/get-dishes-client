@@ -5,13 +5,13 @@ from wtforms.fields.simple import  SubmitField
 from wtforms.validators import DataRequired
 
 class InputForm(FlaskForm):
-    algorithms = SelectField('Algorithm', choices = [],  validators = [DataRequired()])
-    vertices = StringField('Vertices', validators = [DataRequired()])
-    edges = StringField('Edges', validators = [DataRequired()])
-    bidirectional = BooleanField('Bidirectional')
+    category1 = SelectField('Category', choices = [],  validators = [DataRequired()])
+    ingredient1 = SelectField('Ingredient', choices = [], validators = [DataRequired()])
+    ingredients = StringField('Edges', validators = [DataRequired()])
 
     submit = SubmitField('Submit')
 
-    def __init__(self, algorithm_choices, *args, **kwargs):
+    def __init__(self, ingredient_categories, ingredients, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.algorithms.choices = algorithm_choices
+        self.category1.choices = ingredient_categories
+        self.ingredient1.choices = ingredients
