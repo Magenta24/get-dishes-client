@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Algorithms</title>
+    <title>Get your recipie</title>
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,26 +17,20 @@
 </head>
 
 <body>
-
-
     <div class='container'>
-          <form method="POST" action="/algorithm" class="row col-12 g-2" id="algo-form">
+          <form method="POST" action="/" class="row col-12 g-2" id="ingredients-form">
 
             <div class="form-group col-md-12 p-2">
-                <label for="algorithms" class="text">Select algorithm</label><br>
-                {{ form.algorithms(class="form-select", id="algorithms") }}
+                <label for="category1" class="text">Select ingredient's category: </label><br>
+                {{ form.category1(class="form-select", id="category1") }}
             </div>
             <div class="form-group col-md-12 p-2">
-                <label for="vertices" class="text">Enter vertices</label><br>
-                {{ form.vertices(class="form-control", id="vertices") }}
+                <label for="ingredient1" class="text">Select ingredient: </label><br>
+                {{ form.ingredient1(class="form-select", id="ingredient1") }}
             </div>            
             <div class="form-group col-md-12 p-2">
-                <label for="edges" class="text">Edges with weights</label><br>
-                {{ form.edges(type="text", class="form-control", id="edges") }}
-            </div>
-            <div class="form-group col-md-12 p-2">
-                <label for="bidirect" class="text">Is bidirectional?</label><br>
-                {{ form.bidirectional(type="text", class="form-control", id="bidirect") }}
+                <label for="ingredients" class="text">Type your ingredient (seperated with commas)</label><br>
+                {{ form.ingredients(type="text", class="form-control", id="ingredients") }}
             </div>
             <div class="d-grid gap-2">
                 <input type="submit" class="btn btn-dark" value="Send">
@@ -45,7 +39,27 @@
     </div>
 
     <!-- JS -->
-        <script src="{{url_for('static', filename='js/time.js')}}"></script>
+    <script>
+        let category_select = document.getElementById('category1');
+        let ingredient_select = document.getElementById('ingredient1');
+
+        category_select.onchange = function() {
+            category = category_select.value;
+            fetch("http://127.0.0.1:5000/ingredients/" + category).then(function(response) {
+                response.json().then(function(data){
+
+                    let optionHTML = ''
+                    for (let i of data.ingredients) {
+                        optionHTML += "<option value=\"" + i.name + "\">" + i.name + "</option>";
+                    }
+
+                    ingredient_select.innerHTML = optionHTML;
+                })
+            });
+        }
+    </script>
+
+    <script src="{{url_for('static', filename='js/time.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
