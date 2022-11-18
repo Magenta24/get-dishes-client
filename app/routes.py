@@ -1,29 +1,35 @@
 from app import app
 from app.forms import InputForm
 from flask import render_template, request
-from config import GRAPH_SERVICE_URL
+from config import GRAPH_SERVICE_URL, SERVICE1_URL
 import requests
 import json
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():    
-    json_categories = requests.get('http://127.0.0.1:5000/ingredient_categories')
-    categories_names = []
-    ingredients = []
+
+    # getting all categories
+    json_categories = requests.get(SERVICE1_URL + '/ingredient_categories')
+    categories_names = ['...']
+    ingredients = ['...']
     
-    for c in json_categories.json():
-        categories_names.append(json_categories.json()[c]['name'])
-
-    json_ingredients = requests.get('http://127.0.0.1:5000/ingredients/' + json_categories.json()['1']['name'])
-
-    for i in json_ingredients.json()['ingredients']:
-        ingredients.append(i['name'])
+    for c in json_categories.json()['categories']:
+        categories_names.append(c['name'])
         
     form = InputForm(categories_names, ingredients)
 
+    # getting response from service with dishes containing user's ingredients
     if request.method == 'POST':
-        return form.category1.data
+        user_ingredients = {}
+
+        for i in range(1, 10):
+            user_ingredients['ingredient' + str(i)] = request.form.get('ingredient' + str(i))
+
+        print(user_ingredients)
+        dishes_response = requests.get(SERVICE1_URL + '/Dishes?', data=user_ingredients)
+        return dishes_response.json()
+
     return render_template("index.html", form=form) 
 
 # returns json with ingredients with given category
