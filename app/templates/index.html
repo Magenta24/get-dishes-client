@@ -20,14 +20,116 @@
     <div class='container'>
           <form method="POST" action="/" class="row col-12 g-2" id="ingredients-form">
 
-            <div class="form-group col-md-12 p-2">
-                <label for="category1" class="text">Select ingredient's category: </label><br>
-                {{ form.category1(class="form-select", id="category1") }}
+            <div class="form-group col-md-12 p-2" id="input-1">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category1" class="text">Select ingredient's 1 category: </label><br>
+                    {{ form.category1(class="form-select", id="category1") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient1" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient1(class="form-select", id="ingredient1") }}
+                </div>       
             </div>
-            <div class="form-group col-md-12 p-2">
-                <label for="ingredient1" class="text">Select ingredient: </label><br>
-                {{ form.ingredient1(class="form-select", id="ingredient1") }}
-            </div>            
+
+            <div class="form-group col-md-12 p-2" id="input-2">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category2" class="text">Select ingredient's 2 category: </label><br>
+                    {{ form.category2(class="form-select", id="category2") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient2" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient2(class="form-select", id="ingredient2") }}
+                </div>            
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-3">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category3" class="text">Select ingredient's 3 category: </label><br>
+                    {{ form.category3(class="form-select", id="category3") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient3" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient3(class="form-select", id="ingredient3") }}
+                </div>          
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-4">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category4" class="text">Select ingredient's 4 category: </label><br>
+                    {{ form.category4(class="form-select", id="category4") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient4" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient4(class="form-select", id="ingredient4") }}
+                </div>          
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-5">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category5" class="text">Select ingredient's 5 category: </label><br>
+                    {{ form.category5(class="form-select", id="category5") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient5" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient5(class="form-select", id="ingredient5") }}
+                </div>          
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-6">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category6" class="text">Select ingredient's 6 category: </label><br>
+                    {{ form.category6(class="form-select", id="category6") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient6" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient6(class="form-select", id="ingredient6") }}
+                </div>           
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-7">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category7" class="text">Select ingredient's 7 category: </label><br>
+                    {{ form.category7(class="form-select", id="category7") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient7" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient7(class="form-select", id="ingredient7") }}
+                </div>          
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-8">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category8" class="text">Select ingredient's 8 category: </label><br>
+                    {{ form.category8(class="form-select", id="category8") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient8" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient8(class="form-select", id="ingredient8") }}
+                </div>           
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-9">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category9" class="text">Select ingredient's 9 category: </label><br>
+                    {{ form.category9(class="form-select", id="category9") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient9" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient9(class="form-select", id="ingredient9") }}
+                </div>        
+            </div>
+
+            <div class="form-group col-md-12 p-2" id="input-10">
+                <div class="form-group col-md-12 p-2">
+                    <label for="category10" class="text">Select ingredient's 10 category: </label><br>
+                    {{ form.category10(class="form-select", id="category10") }}
+                </div>
+                <div class="form-group col-md-12 p-2">
+                    <label for="ingredient10" class="text">Select ingredient: </label><br>
+                    {{ form.ingredient10(class="form-select", id="ingredient10") }}
+                </div>         
+            </div>
+
             <div class="form-group col-md-12 p-2">
                 <label for="ingredients" class="text">Type your ingredient (seperated with commas)</label><br>
                 {{ form.ingredients(type="text", class="form-control", id="ingredients") }}
@@ -42,6 +144,36 @@
     <script>
         let category_select = document.getElementById('category1');
         let ingredient_select = document.getElementById('ingredient1');
+        
+        // arrays with category and ingredient select fields
+        const category_select_field = []
+        const ingredient_select_field = []
+
+        // initilizing the arrays
+        for(i = 0; i < 10; i++) {
+            category_select_field[i] = document.getElementById('category' + (i + 1).toString());
+            ingredient_select_field[i] = document.getElementById('ingredient' + (i + 1).toString());
+        }
+
+        // console.log(category_select_field[0].value)
+        // console.log(ingredient_select_field[2].value)
+        for(let i = 0; i < 10; i++) {
+
+            category_select_field[i].onchange = function() {
+                category = category_select_field[i].value;
+                fetch("http://127.0.0.1:5000/ingredients/" + category).then(function(response) {
+                    response.json().then(function(data){
+
+                    let optionHTML = ''
+                    for (let i of data.ingredients) {
+                        optionHTML += "<option value=\"" + i.name + "\">" + i.name + "</option>";
+                    }
+
+                    ingredient_select_field[i].innerHTML = optionHTML;
+                    })
+                });
+            }
+        }
 
         category_select.onchange = function() {
             category = category_select.value;
