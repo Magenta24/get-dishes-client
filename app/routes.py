@@ -1,6 +1,6 @@
 from app import app
 from app.forms import InputForm
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from config import GRAPH_SERVICE_URL, SERVICE1_URL
 import requests
 import json
@@ -13,6 +13,7 @@ def home():
     json_categories = requests.get(SERVICE1_URL + '/ingredient_categories')
     categories_names = ['...']
     ingredients = ['...']
+    print(json_categories)
     
     for c in json_categories.json()['categories']:
         categories_names.append(c['name'])
@@ -20,15 +21,6 @@ def home():
     form = InputForm(categories_names, ingredients)
 
     # getting response from service with dishes containing user's ingredients
-    if request.method == 'POST':
-        user_ingredients = {}
-
-        for i in range(1, 10):
-            user_ingredients['ingredient' + str(i)] = request.form.get('ingredient' + str(i))
-
-        print(user_ingredients)
-        dishes_response = requests.get(SERVICE1_URL + '/Dishes?', data=user_ingredients)
-        return dishes_response.json()
 
     return render_template("index.html", form=form) 
 
@@ -38,9 +30,18 @@ def ingredients(category):
     pass
 
 # returns all dishes matching the user's selected ingredients  
-@app.route('/check_dishes', methods=[])
+@app.route('/check_dishes', methods=['POST'])
 def check_dishes():
-    pass
+    user_ingredients = {}
+
+    for i in range(1, 11):
+        user_ingredients['ingredient' + str(i)] = request.form.get('ingredient' + str(i))
+
+    print(user_ingredients)
+    # print(user_ingredients, type(user_ingredients))
+    dishes_response = requests.post(SERVICE1_URL + '/dishes', json=user_ingredients)
+    print(dishes_response.json())
+    return 'xd'
 
 @app.route('/recipie', methods=['POST'])
 def algorithm():    
