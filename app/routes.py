@@ -43,7 +43,11 @@ def check_dishes():
     dishes_and_recipes = {}
 
     for dish in dishes_response:
-        recipes = requests.post(SERVICE_2_URL + f'/dish/{str(dish)}').json()
+        print(dish, type(dish))
+        print(SERVICE_2_URL + f'/dish/{str(dish)}')
+        post_recipes = requests.get(SERVICE_2_URL + f'/dish/{str(dish)}')
+        print(post_recipes)
+        recipes = post_recipes.json()
         if len(recipes) > 0:
             dishes_and_recipes[str(dish)]['recipe'] = recipes[0]['recipe']
             if 'imageName' in recipes[0].keys():
