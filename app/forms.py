@@ -34,7 +34,6 @@ class InputForm(FlaskForm):
     
     category10 = SelectField('Category', choices = [],  validators = [DataRequired()])
     ingredient10 = SelectField('Ingredient', choices = [], validators = [DataRequired()])
-    ingredients = StringField('Edges', validators = [DataRequired()])
 
     submit = SubmitField('Submit')
 
