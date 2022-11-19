@@ -40,8 +40,7 @@ def check_dishes():
     print(user_ingredients)
     # print(user_ingredients, type(user_ingredients))
     dishes_response = requests.post(SERVICE1_URL + '/dishes', json=user_ingredients)
-    print(dishes_response.json())
-    return 'xd'
+    return str(dishes_response.json())
 
 @app.route('/recipie', methods=['POST'])
 def algorithm():    
