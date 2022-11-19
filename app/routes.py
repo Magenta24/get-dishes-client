@@ -1,9 +1,8 @@
 from app import app
 from app.forms import InputForm
-from flask import render_template, request, jsonify
-from config import GRAPH_SERVICE_URL, SERVICE1_URL
+from flask import render_template, request
+from config import SERVICE1_URL, SERVICE_2_URL
 import requests
-import json
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -38,24 +37,19 @@ def check_dishes():
         user_ingredients['ingredient' + str(i)] = request.form.get('ingredient' + str(i))
 
     print(user_ingredients)
-    # print(user_ingredients, type(user_ingredients))
+
     dishes_response = requests.post(SERVICE1_URL + '/dishes', json=user_ingredients)
-    return str(dishes_response.json())
 
-@app.route('/recipie', methods=['POST'])
-def algorithm():    
-    algorithm = request.args.get("algorithm", default="")
-    nodes = request.args.get("nodes", default=[])
-    edges = request.args.get("nodes", default=[])
-    bidirectional = request.args.get("bidirectional", default=False, type=None)
+    dishes_and_recipes = {}
 
-    response = requests.post(GRAPH_SERVICE_URL + "/algorithm?", data={
-        "algorithm": algorithm,
-        "nodes": nodes,
-        "edges": edges,
-        "bidirectional": bidirectional
-    })
+    for dish in dishes_response:
+        recipes = requests.post(SERVICE_2_URL + f'/dish/{str(dish)}').json()
+        if len(recipes) > 0:
+            dishes_and_recipes[str(dish)]['recipe'] = recipes[0]['recipe']
+            if 'imageName' in recipes[0].keys():
+                dishes_and_recipes[str(dish)]['image_url'] = SERVICE_2_URL + "/downloadFile/" + recipes[0].get('imageName')
+            else:
+                dishes_and_recipes[str(dish)]['image_url'] = "DEFAULT_IMAGE_PATH"
 
-    # Some magic I will do Here :P
-
-    print(response.json)
+    print(dishes_and_recipes)
+    return dishes_and_recipes
