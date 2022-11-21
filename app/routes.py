@@ -74,7 +74,7 @@ def check_dishes():
                         accept='audio/mp3'        
                     ).get_result().content)
     # return render_template("dishes.html", dishes = dishes_and_recipes)
-    return "OK"
+    return "dishes_response"
 
 
 @app.route('/get_recipe_audio/<string:dish_name>')
