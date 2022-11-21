@@ -46,12 +46,11 @@ def check_dishes():
     for i in range(1, 11):
         user_ingredients['ingredient' + str(i)] = request.form.get('ingredient' + str(i))
 
-    print(user_ingredients)
-
-    dishes_response = requests.get(SERVICE1_URL + '/all_dishes')
+    dishes_response = requests.get(SERVICE1_URL + '/dishes', json=user_ingredients)
 
     dishes_and_recipes = {}
 
+    print(dishes_response.json())
     for dish in dishes_response.json():
         post_recipes = requests.get(SERVICE_2_URL + f'/dishes/{str(dish)}')
 
