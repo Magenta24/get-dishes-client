@@ -52,14 +52,7 @@ def check_dishes():
 
     dishes_and_recipes = {}
 
-    print(dishes_and_recipes)
-    print(dishes_response.json())
-
-    print("I HARDCODED THE EXAMPLES PLEASE REMOVE MEEEEEEEEEEEEEEEEEEEEEE")
-    HARDCODED_EXAMPLE = ['spaghetti', 'pizza']
-
-    for dish in HARDCODED_EXAMPLE:
-    # for dish in dishes_response.json():
+    for dish in dishes_response.json():
         post_recipes = requests.get(SERVICE_2_URL + f'/dishes/{str(dish)}')
 
         recipes = post_recipes.json()
