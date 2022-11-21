@@ -1,5 +1,6 @@
 import requests
 import datetime
+import statistics as stat
 
 SERVICE_1_ENDPOINT = "http://localhost:5000"
 SERVICE_2_ENDPOINT = "http://localhost:8080/api"
@@ -40,7 +41,27 @@ for i in range(NUM_TRIALS):
     time_end = datetime.datetime.now()
     time_tracker["SERVICE_3_ENDPOINT"].append(time_end - time_start)
 
+print("####################################################################")
+print("#                        SERVICE_1_ENDPOINT                        #")
+print("####################################################################")
+print("Mean(s): ", stat.mean([x.total_seconds() for x in time_tracker["SERVICE_1_ENDPOINT"]]))
+print("Standard Deviation:", stat.stdev([x.total_seconds() for x in time_tracker["SERVICE_1_ENDPOINT"]]))
+print("\n\n")
 
-print("SERVICE_1_ENDPOINT:", sum([x.total_seconds() for x in time_tracker["SERVICE_1_ENDPOINT"]]) / len(time_tracker["SERVICE_1_ENDPOINT"]))
-print("SERVICE_2_ENDPOINT:", sum([x.total_seconds() for x in time_tracker["SERVICE_2_ENDPOINT"]]) / len(time_tracker["SERVICE_2_ENDPOINT"]))
-print("SERVICE_3_ENDPOINT:", sum([x.total_seconds() for x in time_tracker["SERVICE_3_ENDPOINT"]]) / len(time_tracker["SERVICE_3_ENDPOINT"]))
+print("####################################################################")
+print("#                        SERVICE_2_ENDPOINT                        #")
+print("####################################################################")
+print("Mean(s): ", stat.mean([x.total_seconds() for x in time_tracker["SERVICE_2_ENDPOINT"]]))
+print("Standard Deviation:", stat.stdev([x.total_seconds() for x in time_tracker["SERVICE_2_ENDPOINT"]]))
+print("\n\n")
+
+
+print("####################################################################")
+print("#                        SERVICE_3_ENDPOINT                        #")
+print("####################################################################")
+print("Mean(s): ", stat.mean([x.total_seconds() for x in time_tracker["SERVICE_3_ENDPOINT"]]))
+print("Standard Deviation:", stat.stdev([x.total_seconds() for x in time_tracker["SERVICE_3_ENDPOINT"]]))
+print("\n\n")
+
+# print("SERVICE_2_ENDPOINT:", stat.mean([x.total_seconds() for x in time_tracker["SERVICE_2_ENDPOINT"]]))
+# print("SERVICE_3_ENDPOINT:", stat.mean([x.total_seconds() for x in time_tracker["SERVICE_3_ENDPOINT"]]))
