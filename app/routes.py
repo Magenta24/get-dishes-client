@@ -46,12 +46,13 @@ def check_dishes():
     for i in range(1, 11):
         user_ingredients['ingredient' + str(i)] = request.form.get('ingredient' + str(i))
 
-    dishes_response = requests.get(SERVICE1_URL + '/dishes', json=user_ingredients)
 
+    dishes_response = requests.post(SERVICE1_URL + '/dishes', json=user_ingredients)
     dishes_and_recipes = {}
 
     print(dishes_response.json())
-    for dish in dishes_response.json():
+    for iter_dish in dishes_response.json().get('dishes'):
+        dish = iter_dish.get('name')
         post_recipes = requests.get(SERVICE_2_URL + f'/dishes/{str(dish)}')
 
         recipes = post_recipes.json()
@@ -72,7 +73,8 @@ def check_dishes():
                         voice='en-US_AllisonV3Voice',
                         accept='audio/mp3'        
                     ).get_result().content)
-    return render_template("dishes.html", dishes = dishes_and_recipes)
+    # return render_template("dishes.html", dishes = dishes_and_recipes)
+    return "OK"
 
 
 @app.route('/get_recipe_audio/<string:dish_name>')
