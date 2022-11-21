@@ -48,7 +48,8 @@ def check_dishes():
 
     print(user_ingredients)
 
-    dishes_response = requests.get(SERVICE1_URL + '/all_dishes')
+    dishes_response = requests.post(SERVICE1_URL + '/dishes', json=user_ingredients)
+
 
     dishes_and_recipes = {}
 
