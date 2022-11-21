@@ -16,3 +16,4 @@ Werkzeug==2.0.2
 WTForms==3.0.0
 gunicorn
 requests
+ibm-watson>=6.1.0
