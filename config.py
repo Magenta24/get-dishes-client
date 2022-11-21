@@ -8,7 +8,6 @@ SECRET_KEY = 'secret-key-1234-#$%^'
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 SERVICE1_URL = 'http://127.0.0.1:5000'
-
 SERVICE_2_URL = 'http://localhost:8080/api'
 
 API_KEY = 'zYAH4XzJ_X6U-RetmZw-Y0-1L2a8uG_qrE5MTKzM7-SM'
