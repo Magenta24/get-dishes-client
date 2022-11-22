@@ -18,6 +18,8 @@
 
 <body>
     <div class='container'>
+        <h1>Get your recipe!</h1>
+        <h3>Select ingredients you have and I will return recipies of dishes you can make of them.</h3>
           <form method="POST" action="/check_dishes" class="row col-12 g-2" id="ingredients-form">
 
             <div class="form-group col-md-12 p-2" id="input-1">
@@ -129,7 +131,7 @@
                     {{ form.ingredient10(class="form-select", id="ingredient10") }}
                 </div>         
             </div>
-            <div class="d-grid gap-2">
+            <div class="d-grid gap-2" style="margin-bottom: 25px;" >
                 <input type="submit" class="btn btn-dark" value="Send">
             </div>
         </form>

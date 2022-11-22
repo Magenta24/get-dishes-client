@@ -20,29 +20,45 @@
 
 <body>
     <div class='container'>
+        <div class="row">
+            <div class="col-2" style="margin-top: 2%; margin-bottom: 2%;">
+                <a href="/">
+                    <button type="button" class="btn btn-dark">Go back Home</button>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                {% for dish, dish_details in dishes.items() %}
+                <tr class="row">
+                    <td class="col-4"  style="background-color: rgba(0,0,0,0.2);">
+                        <h2>{{dish}}</h2>
+                        <p>{{dish_details['recipe']}}</p>
+                    </td>
+                    <td class="col-2" style="background-color: rgba(0,0,0,0.3);">
+                        <h6><b>Ingredients you need to buy</b></h6>
+                        {% for mi in dish_details['missing_ingredients'] %}
+                        <div style="padding-left: 10%;" class="row text">{{ mi }}</div>
+                        {% endfor %}
+                    </td>
+                    <td class="col-3"  style="background-color: rgba(0,0,0,0.2);">
+                        <div class="row" style="width: 100%; align-items: center; justify-content: center;">
+                            <img style="max-width: 70%;margin-top: 25%;border-radius: 15px;" src="{{dish_details['image_url'] | safe}}">
+    
+                        </div>
+                    </td>
+                    <td class="col-3"  style="background-color: rgba(0,0,0,0.3);">
+                        <audio style="margin-top: 50%;" src="{{ url_for('get_recipe_audio', dish_name=dish) }}" controls>
+                            Your browser does not support the audio element.
+                        </audio>
+                    </td>
+                </tr>
+                <!-- {{dish}} -->
+                    {% endfor %}
+            </table>
+        </div>
             <!-- {{dishes}} -->
-        <table class="table">
-            {% for dish, dish_details in dishes.items() %}
-            <tr class="row">
-                <td class="col-6">
-                    <h2>{{dish}}</h2>
-                    <p>{{dish_details['recipe']}}</p>
-                </td>
-                <td class="col-3">
-                    <div class="row" style="width: 100%; align-items: center; justify-content: center;">
-                        <img style="max-width: 70%;margin-top: 25%;border-radius: 15px;" src="{{dish_details['image_url'] | safe}}">
 
-                    </div>
-                </td>
-                <td class="col-3">
-                    <audio style="margin-top: 50%;" src="{{ url_for('get_recipe_audio', dish_name=dish) }}" controls>
-                        Your browser does not support the audio element.
-                    </audio>
-                </td>
-            </tr>
-            <!-- {{dish}} -->
-                {% endfor %}
-        </table>
     </div>
 
     <!-- JS -->

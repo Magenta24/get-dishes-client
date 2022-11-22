@@ -52,6 +52,7 @@ def check_dishes():
 
     for iter_dish in dishes_response.json().get('dishes'):
         dish = iter_dish.get('name')
+        missing_ingredients = iter_dish.get('missing_ingredients_names')
         post_recipes = requests.get(SERVICE_2_URL + f'/dishes/{str(dish)}')
 
         recipes = post_recipes.json()
@@ -60,18 +61,20 @@ def check_dishes():
                 dishes_and_recipes[str(dish)] = dict()
 
             dishes_and_recipes[str(dish)]['recipe'] = recipes[0]['recipe']
+            dishes_and_recipes[str(dish)]['missing_ingredients'] = missing_ingredients
             if 'imageName' in recipes[0].keys():
                 dishes_and_recipes[str(dish)]['image_url'] = SERVICE_2_URL + "/downloadFile/" + recipes[0].get('imageName')
             else:
                 dishes_and_recipes[str(dish)]['image_url'] = DEFAULT_IMAGE_PATH
 
-            with open(f'{TTS_FOLDER}/{dish}.mp3', 'wb') as audio_file:
-                audio_file.write(
-                    text_to_speech.synthesize(
-                        recipes[0]['recipe'],
-                        voice='en-US_AllisonV3Voice',
-                        accept='audio/mp3'        
-                    ).get_result().content)
+            # with open(f'{TTS_FOLDER}/{dish}.mp3', 'wb') as audio_file:
+            #     audio_file.write(
+            #         text_to_speech.synthesize(
+            #             recipes[0]['recipe'],
+            #             voice='en-US_AllisonV3Voice',
+            #             accept='audio/mp3'        
+            #         ).get_result().content)
+    print(dishes_and_recipes)
     return render_template("dishes.html", dishes = dishes_and_recipes)
 
 
