@@ -67,13 +67,13 @@ def check_dishes():
             else:
                 dishes_and_recipes[str(dish)]['image_url'] = DEFAULT_IMAGE_PATH
 
-            # with open(f'{TTS_FOLDER}/{dish}.mp3', 'wb') as audio_file:
-            #     audio_file.write(
-            #         text_to_speech.synthesize(
-            #             recipes[0]['recipe'],
-            #             voice='en-US_AllisonV3Voice',
-            #             accept='audio/mp3'        
-            #         ).get_result().content)
+            with open(f'{TTS_FOLDER}/{dish}.mp3', 'wb') as audio_file:
+                audio_file.write(
+                    text_to_speech.synthesize(
+                        recipes[0]['recipe'],
+                        voice='en-US_AllisonV3Voice',
+                        accept='audio/mp3'        
+                    ).get_result().content)
     print(dishes_and_recipes)
     return render_template("dishes.html", dishes = dishes_and_recipes)
 
