@@ -50,7 +50,6 @@ def check_dishes():
     dishes_response = requests.post(SERVICE1_URL + '/dishes', json=user_ingredients)
     dishes_and_recipes = {}
 
-    print(dishes_response.json())
     for iter_dish in dishes_response.json().get('dishes'):
         dish = iter_dish.get('name')
         post_recipes = requests.get(SERVICE_2_URL + f'/dishes/{str(dish)}')
@@ -73,8 +72,7 @@ def check_dishes():
                         voice='en-US_AllisonV3Voice',
                         accept='audio/mp3'        
                     ).get_result().content)
-    # return render_template("dishes.html", dishes = dishes_and_recipes)
-    return "dishes_response"
+    return render_template("dishes.html", dishes = dishes_and_recipes)
 
 
 @app.route('/get_recipe_audio/<string:dish_name>')
